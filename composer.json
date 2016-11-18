@@ -1,0 +1,21 @@
+{
+  "name": "kozlovsv/yii2-widget-datetimepicker",
+  "description": "Enhanced Yii2 wrapper for the bootstrap datetimepicker plugin. Masked Input",
+  "keywords": ["yii2", "extension", "widget", "select2", "form", "datetime", "picker", "jquery", "plugin"],
+  "homepage": "https://github.com/kozlovsv/yii2-widget-datetimepicker",
+  "type": "yii2-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kozlov Sergey",
+      "email": "kozlovsv78@gmail.com",
+      "homepage": "http://atonex.ru/"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "kozlovsv\\datetimepicker\\": ""
+    }
+  }
+}
