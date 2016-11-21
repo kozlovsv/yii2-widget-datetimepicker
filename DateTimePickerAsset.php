@@ -10,10 +10,11 @@ use yii\web\AssetBundle;
 class DateTimePickerAsset extends AssetBundle
 {
 
-    public $sourcePath = __DIR__ . '/assets';
+    public $sourcePath = '/assets';
 
     public function init()
     {
+        $this->sourcePath = __DIR__ . '/assets';
         if (empty(YII_DEBUG)) {
             $this->js[] = 'js/moment-with-locales.min.js';
             $this->js[] = 'js/bootstrap-datetimepicker.min.js';
