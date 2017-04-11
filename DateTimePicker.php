@@ -13,21 +13,6 @@ use yii\widgets\MaskedInput;
 class DateTimePicker extends MaskedInput
 {
     /**
-     * @var string
-     */
-    public $mask = 'd.m.y';
-
-    /**
-     * @var string the language to use
-     */
-    public $language;
-
-    /**
-     * @var array the options for the Bootstrap DatePicker plugin.
-     */
-    public $clientOptions = [];
-
-    /**
      * @var array the event handlers for the underlying Bootstrap Switch 3 input JS plugin.
      */
     public $clientEvents = [];
@@ -70,6 +55,7 @@ class DateTimePicker extends MaskedInput
      */
     public function init()
     {
+        $this->clientOptions = array_merge(['alias' => 'dd.mm.yyyy', 'placeholder' => '__.__.____'], $this->clientOptions);
         parent::init();
 
         Html::addCssClass($this->containerOptions, 'input-group date');
@@ -102,7 +88,8 @@ class DateTimePicker extends MaskedInput
             'mask' => $this->mask,
             'model' => $this->model,
             'attribute' => $this->attribute,
-            'options' => $this->options
+            'options' => $this->options,
+            'clientOptions' => $this->clientOptions,
         ]);
 
         if (!$this->inline) {
