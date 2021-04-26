@@ -2,14 +2,12 @@
 
 namespace kozlovsv\datepicker;
 
+use Exception;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\widgets\MaskedInput;
 
-/**
- * @author Ilya Norkin
- */
 class DateTimePicker extends MaskedInput
 {
     /**
@@ -75,12 +73,18 @@ class DateTimePicker extends MaskedInput
         $value = $this->model{$this->attribute};
         if ($this->model{$this->attribute} != null) {
             $format = isset($this->clientOptions['pickTime']) && $this->clientOptions['pickTime'] === false ? 'date' : 'datetime';
-            $this->model{$this->attribute} = Yii::$app->formatter->format($value, $format);
+            try {
+                $this->model{$this->attribute} = Yii::$app->formatter->format($value, $format);
+            }
+            catch (Exception $e) {
+                $this->model{$this->attribute} = null;
+            }
         }
     }
 
     /**
      * @inheritdoc
+     * @throws Exception
      */
     public function run()
     {
