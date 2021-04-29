@@ -123,7 +123,7 @@ class DateTimePicker extends MaskedInput
         $view = $this->getView();
         DateTimePickerAsset::register($view);
         $id = $this->options['id'];
-        $selector = ";jQuery('#$id')";
+        $selector = "jQuery('#$id')";
 
         if (strpos($this->template, '{button}') !== false || $this->inline) {
             $selector .= ".parent()";
@@ -132,6 +132,7 @@ class DateTimePicker extends MaskedInput
         $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
 
         $js[] = "$selector.datetimepicker($options);";
+        $js[] = "{$selector}.on('keydown', function(event) {{$selector}.data('DateTimePicker').hide(); } );";
 
         if ($this->inline) {
             $js[] = "$selector.find('.datetimepicker-inline').addClass('center-block');";
