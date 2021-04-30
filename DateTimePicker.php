@@ -70,14 +70,14 @@ class DateTimePicker extends MaskedInput
             Html::addCssClass($this->options, 'text-center');
         }
 
-        $value = $this->model{$this->attribute};
-        if ($this->model{$this->attribute} != null) {
+        $value = $this->model->{$this->attribute};
+        if ($this->model->{$this->attribute} != null) {
             $format = isset($this->clientOptions['pickTime']) && $this->clientOptions['pickTime'] === false ? 'date' : 'datetime';
             try {
-                $this->model{$this->attribute} = Yii::$app->formatter->format($value, $format);
+                $this->model->{$this->attribute} = Yii::$app->formatter->format($value, $format);
             }
             catch (Exception $e) {
-                $this->model{$this->attribute} = null;
+                $this->model->{$this->attribute} = null;
             }
         }
     }
