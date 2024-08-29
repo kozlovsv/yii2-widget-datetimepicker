@@ -73,11 +73,10 @@ class DateTimePicker extends MaskedInput
 
         $value = $this->model->{$this->attribute};
         if ($this->model->{$this->attribute} != null) {
-            $format = isset($this->clientOptions['pickTime']) && $this->clientOptions['pickTime'] === false ? 'date' : 'datetime';
+            $format = $this->getDateFormat();
             try {
                 $this->model->{$this->attribute} = Yii::$app->formatter->format($value, $format);
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $this->model->{$this->attribute} = null;
             }
         }
@@ -145,6 +144,18 @@ class DateTimePicker extends MaskedInput
             }
         }
         $view->registerJs(implode("\n", $js));
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateFormat()
+    {
+        if (isset($this->clientOptions['pickDate']) && $this->clientOptions['pickDate'] === false)
+            return 'time';
+        if (!empty($this->clientOptions['pickTime']))
+            return 'datetime';
+        return 'date';
     }
 
 }
