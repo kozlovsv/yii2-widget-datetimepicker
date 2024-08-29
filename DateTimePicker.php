@@ -48,14 +48,15 @@ class DateTimePicker extends MaskedInput
      */
     public $inline = false;
 
+    public $mask = '99.99.9999';
+
     /**
      * @inheritdoc
      */
     public function init()
     {
-        $this->clientOptions = array_merge(['alias' => 'dd.mm.yyyy', 'placeholder' => '__.__.____'], $this->clientOptions);
         parent::init();
-
+        if (!isset($this->options['autocomplete'])) $this->options['autocomplete'] = 'off';
         Html::addCssClass($this->containerOptions, 'input-group date');
         Html::addCssClass($this->options, 'form-control');
         if ($this->size !== null) {
@@ -143,7 +144,7 @@ class DateTimePicker extends MaskedInput
                 $js[] = "$selector.on('$event', $handler);";
             }
         }
-        $view->registerJs(implode("\n", $js), $view::POS_READY);
+        $view->registerJs(implode("\n", $js));
     }
 
 }
